@@ -41,7 +41,7 @@
     ></div>
     <div
       use:melt={$content}
-      class="fixed left-0 top-0 z-50 h-screen w-full max-w-80 bg-white shadow-lg focus:outline-none"
+      class="fixed left-0 top-0 flex flex-col z-50 h-screen w-full max-w-80 bg-white shadow-lg focus:outline-none"
       transition:fly={{
         x: -350,
         duration: 300,
@@ -78,6 +78,10 @@
         >
           Create a new date
         </Button>
+      </div>
+
+      <div class="mt-auto text-center text-xs p-1 select-none">
+        {import.meta.env.APP_VERSION}
       </div>
     </div>
   </div>
