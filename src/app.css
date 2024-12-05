@@ -1,0 +1,60 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  html {
+    @apply overflow-hidden overscroll-none;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    text-size-adjust: 100%;
+  }
+
+  ::selection {
+    @apply bg-primary text-white;
+  }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    max-width: 8px;
+    max-height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    @apply bg-gray-500;
+  }
+  ::-webkit-scrollbar-button {
+    @apply size-0;
+  }
+}
+
+@layer utilities {
+  .text-link {
+    @apply underline text-primary hover:text-current;
+  }
+
+  .focus-visible {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white;
+  }
+
+  .pwa-header {
+    @apply left-titlebar-area-x top-titlebar-area-y w-titlebar-area-width h-titlebar-area-height;
+  }
+
+  .drag {
+    -webkit-app-region: drag;
+    app-region: drag;
+  }
+  .no-drag {
+    -webkit-app-region: no-drag;
+    app-region: no-drag;
+  }
+}
