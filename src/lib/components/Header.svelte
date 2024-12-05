@@ -6,12 +6,18 @@
   import { currentDate } from '$lib/context/dates.svelte';
   import { Share2Icon as ShareIcon } from 'lucide-svelte';
   // $inspect({ $currentDate });
+
+  const title = $derived(`Is it ${$currentDate?.name || '...'}?`);
 </script>
+
+<svelte:head>
+  <title>{title}</title>
+</svelte:head>
 
 <header class="relative flex gap-1 p-2">
   <Sidebar />
 
-  <span class="ml-2 self-center font-bold text-xl truncate select-none">Is it {$currentDate?.name || '...'}?</span>
+  <span class="ml-2 self-center font-bold text-xl truncate select-none">{title}</span>
 
   <span class="ml-auto"></span>
 
