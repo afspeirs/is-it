@@ -1,6 +1,7 @@
 <script lang="ts">
   import '../app.css';
   import Header from '$lib/components/Header.svelte';
+  import Toaster from '$lib/components/Toaster.svelte';
 
   let { children } = $props();
 </script>
@@ -14,3 +15,5 @@
     </div>
   </main>
 </div>
+
+<Toaster />
