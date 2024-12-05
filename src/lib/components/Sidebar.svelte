@@ -37,14 +37,14 @@
     <div
       use:melt={$overlay}
       class="fixed inset-0 z-50 bg-primary/70 dark:bg-black/70 backdrop-blur-sm"
-      transition:fade={{ duration: 150 }}
+      transition:fade={{ duration: 100 }}
     ></div>
     <div
       use:melt={$content}
       class="fixed left-0 top-0 flex flex-col z-50 h-screen w-full max-w-80 bg-white shadow-lg focus:outline-none"
       transition:fly={{
         x: -350,
-        duration: 300,
+        duration: 200,
         opacity: 1,
       }}
     >
