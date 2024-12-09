@@ -1,4 +1,4 @@
-import { currentDate, dates } from '$lib/context/dates.svelte';
+import { date, dates } from '$lib/context/dates.svelte';
 import { generateSearchParams } from '$lib/utils/generateSearchParamsFromObject';
 import { error, redirect } from '@sveltejs/kit';
 
@@ -18,7 +18,7 @@ export function load({ url }) {
     error(404, 'Date not found');
   }
 
-  const date = {
+  const currentDate = {
     day,
     month,
     name: name || `${day}/${month}`,
@@ -26,7 +26,7 @@ export function load({ url }) {
     valueNo,
   };
 
-  currentDate.set(date);
+  date.current = currentDate;
 
   const todayDate = new Date();
   const todayDay = todayDate.getDay();
@@ -35,7 +35,7 @@ export function load({ url }) {
   const isToday = todayDay === parseInt(day, 10) && todayMonth === parseInt(month, 10);
 
   return {
-    date,
+    date: currentDate,
     isToday,
   };
 }

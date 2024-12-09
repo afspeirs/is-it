@@ -3,11 +3,11 @@
   import Button from '$lib/components/Button.svelte';
   import Sidebar from '$lib/components/Sidebar.svelte';
   import { toast } from '$lib/components/Toaster.svelte';
-  import { currentDate } from '$lib/context/dates.svelte';
+  import { date } from '$lib/context/dates.svelte';
   import { Share2Icon as ShareIcon } from 'lucide-svelte';
-  // $inspect({ $currentDate });
+  // $inspect(date);
 
-  const title = $derived(`Is it ${$currentDate?.name || '...'}?`);
+  const title = $derived(`Is it ${date.current?.name || '...'}?`);
 </script>
 
 <svelte:head>
@@ -21,14 +21,14 @@
 
   <span class="ml-auto"></span>
 
-  {#if $currentDate?.name}
+  {#if date.current?.name}
     <Button
       icon={ShareIcon}
       iconOnly
       colour="primary"
       onclick={async () => {
         const url = $page.url.href;
-        const title = `Is it ${$currentDate.name}`;
+        const title = `Is it ${date.current?.name}`;
 
         try {
           if (navigator.share) {
@@ -37,7 +37,7 @@
             await navigator.clipboard.writeText(url)
               .then(() => {
                 toast.add({
-                  title: `Copied shareable link to "Is it ${$currentDate?.name}"}`,
+                  title: `Copied shareable link to "Is it ${date.current?.name}"}`,
                 });
               });
           }
@@ -46,7 +46,7 @@
         }
       }}
     >
-      Share "Is it {$currentDate.name}"
+      Share "Is it {date.current.name}"
     </Button>
   {/if}
 </header>

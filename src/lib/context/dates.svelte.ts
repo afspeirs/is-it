@@ -1,5 +1,3 @@
-import { writable } from 'svelte/store';
-
 type Date = {
   name: string,
   day: string,
@@ -28,5 +26,5 @@ const initialState: Date[] = [
   },
 ];
 
-export const currentDate = writable<Partial<Date> | null>(null);
+export const date = $state<{ current: Partial<Date> | null }>({ current: null });
 export const dates = $state(initialState);
