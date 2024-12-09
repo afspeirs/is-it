@@ -1,9 +1,17 @@
+import { browser } from '$app/environment';
+
 type Date = {
   name: string,
   day: string,
   month: string,
   valueYes?: string,
   valueNo?: string,
+};
+type DateContext = {
+  all: Date[],
+  current: Date | null,
+  addDate: (date: Date) => void,
+  // removeDate: (date: Date) => void,
 };
 
 const initialState: Date[] = [
@@ -26,5 +34,16 @@ const initialState: Date[] = [
   },
 ];
 
-export const date = $state<{ current: Partial<Date> | null }>({ current: null });
-export const dates = $state(initialState);
+export const dates = $state<DateContext>({
+  all: JSON.parse((browser && localStorage.getItem('dates-all')) || JSON.stringify(initialState)),
+  current: null,
+  addDate(date: Date) {
+    this.all.push(date);
+
+    console.log(this.all);
+
+    if (browser) {
+      localStorage.setItem('dates-all', JSON.stringify(this.all));
+    }
+  },
+});

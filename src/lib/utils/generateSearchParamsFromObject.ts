@@ -1,9 +1,5 @@
-// export function generateSearchParams(obj: { [key: string]: string }) {
-//   return new URLSearchParams(Object.entries(obj)).toString();
-// }
-
-
 export function generateSearchParams(obj: { [key: string]: string }) {
+  // TODO: Remove empty values
   const searchParams = new URLSearchParams(obj)
     .toString()
     .replaceAll('+', '%20');

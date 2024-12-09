@@ -1,9 +1,10 @@
 <script lang="ts">
   import { createDialog, melt } from '@melt-ui/svelte';
-  import { Calendar, Menu, Plus, X } from 'lucide-svelte';
+  import { CalendarIcon, MenuIcon, XIcon } from 'lucide-svelte';
   import { fade, fly } from 'svelte/transition';
 
   import { page } from '$app/stores';
+  import AddDate from '$lib/components/AddDate.svelte';
   import Button from '$lib/components/Button.svelte';
   import { dates } from '$lib/context/dates.svelte';
   import { generateSearchParams } from '$lib/utils/generateSearchParamsFromObject';
@@ -26,7 +27,7 @@
 <Button
   colour="primary"
   element={trigger}
-  icon={Menu}
+  icon={MenuIcon}
   iconOnly
 >
   Open Sidebar
@@ -37,7 +38,7 @@
     <div
       use:melt={$overlay}
       class="fixed inset-0 z-50 bg-primary/70 dark:bg-black/70 backdrop-blur-sm"
-      transition:fade={{ duration: 100 }}
+      transition:fade={{ duration: 200 }}
     ></div>
     <div
       use:melt={$content}
@@ -55,7 +56,7 @@
 
         <Button
           element={close}
-          icon={X}
+          icon={XIcon}
           iconOnly
         >
           Close Sidebar
@@ -63,21 +64,18 @@
       </div>
 
       <div class="p-2 space-y-1">
-        {#each dates as date}
+        {#each dates.all as date}
           {@const param = generateSearchParams(date)}
           <Button
             active={$page.url.search.includes(param)}
-            icon={Calendar}
+            icon={CalendarIcon}
             href={`/?${param}`}
           >
             {date.name}
           </Button>
         {/each}
-        <Button
-          icon={Plus}
-        >
-          Create a new date
-        </Button>
+
+        <AddDate />
       </div>
 
       <div class="mt-auto text-center text-xs p-1 select-none">

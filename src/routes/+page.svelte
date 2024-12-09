@@ -7,7 +7,7 @@
   let { data }: { data: PageData } = $props();
   // console.log(data);
 
-  const currentDate = dates.find((date) => (
+  const currentDate = dates.all.find((date) => (
     date.day === data.date.day &&
     date.month === data.date.month
   ));

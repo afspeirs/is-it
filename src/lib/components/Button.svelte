@@ -40,6 +40,7 @@
     href?: never,
     onclick?: (event: MouseEvent) => void
     target?: never,
+    type?: 'button' | 'submit'
   };
 
   type LinkOptions = BaseProps & {
@@ -47,6 +48,7 @@
     href: string, // TODO: Make this typesafe
     onclick?: never,
     target?: '_self' | '_blank',
+    type?: never,
   };
 
   type ButtonProps = ButtonOptions | LinkOptions;
@@ -67,6 +69,7 @@
     onclick,
     // secondaryAction,
     target = '_self',
+    type = 'button',
     ...props
   }: ButtonProps = $props();
 </script>
@@ -106,7 +109,6 @@
   </a>
 {:else}
   <button
-    type="button"
     class={classNames(
       iconOnly ? style.iconOnly : style.withText,
       !iconOnly && fullWidth ? style.fullWidth : '',
@@ -114,8 +116,9 @@
       style.base,
       className,
     )}
-    disabled={disabled}
+    {disabled}
     {onclick}
+    {type}
     {...props}
     use:melt={$element}
   >
