@@ -1,0 +1,31 @@
+{
+  "name": "Is it ...",
+  "short_name": "Is it ...",
+  "description": "Determine if it is a certain day or not",
+  "dir": "ltr",
+  "lang": "en",
+  "id": "/?utm_source=home-screen",
+  "start_url": "/?utm_source=home-screen",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay"],
+  "theme_color": "#446644",
+  "background_color": "#446644",
+  "icons": [
+    {
+      "src": "/icon-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
