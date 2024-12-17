@@ -24,13 +24,19 @@
     forceVisible: true,
   });
 
-  let values = $state({
+  let form = $state({
     name: '',
     day: '',
     month: '',
     valueYes: '',
     valueNo: '',
   });
+  let formValid = $state({
+    name: false,
+    day: false,
+    month: false,
+  });
+  let disabled = $derived(!formValid.name || !formValid.day || !formValid.month);
 </script>
 
 <Button
@@ -84,8 +90,13 @@
           <input
             class="inline-flex h-8 w-full flex-1 items-center justify-center rounded-sm border border-solid px-3 leading-none text-black"
             id="name"
-            bind:value={values.name}
+            bind:value={form.name}
             required
+            aria-required="true"
+            oninput={(e: Event) => {
+              const target = e.target as HTMLInputElement;
+              formValid.name = target?.validity?.valid || false;
+            }}
           />
         </fieldset>
         <fieldset class="mb-4 flex items-center gap-5">
@@ -98,13 +109,18 @@
             max="31"
             class="inline-flex h-8 w-full flex-1 items-center justify-center rounded-sm border border-solid px-3 leading-none text-black"
             id="day"
-            bind:value={values.day}
+            bind:value={form.day}
             required
+            aria-required="true"
+            oninput={(event: Event) => {
+              const target = event.target as HTMLInputElement;
+              formValid.day = target?.validity?.valid || false;
+            }}
           />
         </fieldset>
         <fieldset class="mb-4 flex items-center gap-5">
           <label class="w-[90px] text-right text-black" for="month">
-            month
+            Month
           </label>
           <input
             type="number"
@@ -112,8 +128,13 @@
             max="12"
             class="inline-flex h-8 w-full flex-1 items-center justify-center rounded-sm border border-solid px-3 leading-none text-black"
             id="month"
-            bind:value={values.month}
+            bind:value={form.month}
             required
+            aria-required="true"
+            oninput={(event: Event) => {
+              const target = event.target as HTMLInputElement;
+              formValid.month = target?.validity?.valid || false;
+            }}
           />
         </fieldset>
         <fieldset class="mb-4 flex items-center gap-5">
@@ -123,7 +144,7 @@
           <input
             class="inline-flex h-8 w-full flex-1 items-center justify-center rounded-sm border border-solid px-3 leading-none text-black"
             id="valueYes"
-            bind:value={values.valueYes}
+            bind:value={form.valueYes}
           />
         </fieldset>
         <fieldset class="mb-4 flex items-center gap-5">
@@ -133,7 +154,7 @@
           <input
             class="inline-flex h-8 w-full flex-1 items-center justify-center rounded-sm border border-solid px-3 leading-none text-black"
             id="valueNo"
-            bind:value={values.valueNo}
+            bind:value={form.valueNo}
           />
         </fieldset>
 
@@ -148,23 +169,20 @@
             type="submit"
             colour="primary"
             fullWidth={false}
+            {disabled}
             onclick={() => {
-              console.log(values);
-
               if (
-                values.name !== ''
-                && values.day !== ''
-                && values.month !== ''
+                form.name !== ''
+                && form.day !== ''
+                && form.month !== ''
               ) {
-                console.log(`/?${generateSearchParams(values)}`);
-
-                dates.addDate(values);
+                // console.log(`/?${generateSearchParams(form)}`);
+                dates.addDate(form);
                 // TODO: Navigate to new date
-                goto(`/?${generateSearchParams(values)}`);
+                goto(`/?${generateSearchParams(form)}`);
 
                 $open = !$open;
               }
-
             }}
           >
             Save changes

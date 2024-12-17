@@ -12,6 +12,7 @@ type DateContext = {
   current: Date | null,
   addDate: (date: Date) => void,
   // removeDate: (date: Date) => void,
+  setCurrent: (date: Date) => void,
 };
 
 const initialState: Date[] = [
@@ -38,12 +39,29 @@ export const dates = $state<DateContext>({
   all: JSON.parse((browser && localStorage.getItem('dates-all')) || JSON.stringify(initialState)),
   current: null,
   addDate(date: Date) {
-    this.all.push(date);
+    // Have to recreate the date to make sure the day and month as strings
+    const newDate = {
+      name: date.name,
+      day: date.day.toString(),
+      month: date.month.toString(),
+      valueYes: date.valueYes,
+      valueNo: date.valueNo,
+    };
 
-    console.log(this.all);
+    if (newDate.valueNo === '') {
+      delete newDate.valueNo;
+    }
+    if (newDate.valueYes === '') {
+      delete newDate.valueYes;
+    }
+
+    this.all.push(newDate);
 
     if (browser) {
       localStorage.setItem('dates-all', JSON.stringify(this.all));
     }
+  },
+  setCurrent(date: Date) {
+    this.current = date;
   },
 });

@@ -26,7 +26,7 @@ export function load({ url }) {
     valueNo,
   };
 
-  dates.current = currentDate;
+  dates.setCurrent(currentDate);
 
   const todayDate = new Date();
   const todayDay = todayDate.getDay();
