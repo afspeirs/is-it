@@ -1,6 +1,6 @@
 {
   "name": "is-it",
-  "version": "1.0.0-develop.7",
+  "version": "1.0.0-develop.8",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
