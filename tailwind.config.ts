@@ -4,6 +4,7 @@ import {
   black,
   gray,
   neutral,
+  red,
   white,
 } from 'tailwindcss/colors';
 
@@ -24,6 +25,7 @@ export default {
       neutral,
       dark: neutral[800],
       light: neutral[100],
+      danger: red[500],
     },
     extend: {
       spacing: {

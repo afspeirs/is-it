@@ -39,7 +39,7 @@
   import { fly } from 'svelte/transition';
 </script>
 
-<div class="fixed right-0 bottom-0 flex flex-col items-end gap-2 m-4 z-50 select-none" use:portal>
+<div class="fixed right-0 bottom-0 flex flex-col items-end gap-2 m-4 z-[99999] select-none" use:portal>
   {#each $toasts as { id, data } (id)}
     <div
       animate:flip={{ duration: 500 }}
@@ -60,6 +60,7 @@
             <button
               class="p-2 rounded-md text-dark dark:text-white bg-white dark:bg-dark hover:bg-white/80 dark:hover:bg-dark/80"
               onclick={data.button.onclick}
+              use:melt={$close(id)}
             >
               <span>{data.button.title}</span>
             </button>

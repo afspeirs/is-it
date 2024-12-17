@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createDialog, melt } from '@melt-ui/svelte';
-  import { CalendarIcon, MenuIcon, XIcon } from 'lucide-svelte';
+  import { CalendarIcon, MenuIcon, Trash2Icon, XIcon } from 'lucide-svelte';
   import { fade, fly } from 'svelte/transition';
 
   import { page } from '$app/stores';
@@ -66,13 +66,23 @@
       <div class="p-2 space-y-1">
         {#each dates.all as date}
           {@const param = generateSearchParams(date)}
-          <Button
-            active={$page.url.search.includes(param)}
-            icon={CalendarIcon}
-            href={`/?${param}`}
-          >
-            {date.name}
-          </Button>
+          <div class="flex">
+            <Button
+              active={$page.url.search.includes(param)}
+              icon={CalendarIcon}
+              href={`/?${param}`}
+            >
+              {date.name}
+            </Button>
+            <Button
+              icon={Trash2Icon}
+              iconOnly
+              iconClassName="text-danger"
+              onclick={() => dates.removeDate(date)}
+            >
+              {date.name}
+            </Button>
+          </div>
         {/each}
 
         <AddDate />

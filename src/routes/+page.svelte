@@ -7,11 +7,10 @@
   let { data }: { data: PageData } = $props();
   // console.log(data);
 
-  const foundDate = dates.all.find((date) => (
+  const foundDate = $derived(dates.all.find((date) => (
     date.day === data.date.day &&
     date.month === data.date.month
-  ));
-
+  )));
 
   // $inspect({ foundDate });
 </script>

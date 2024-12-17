@@ -89,7 +89,7 @@
     {...props}
   >
     {#if Icon}
-      <Icon className={classNames('size-6 flex-shrink-0', iconClassName)} aria-hidden="true" />
+      <Icon class={classNames('size-6 flex-shrink-0', iconClassName)} aria-hidden="true" />
     {/if}
 
     <span
@@ -123,7 +123,7 @@
     use:melt={$element}
   >
     {#if Icon}
-      <Icon className={classNames('size-6 flex-shrink-0', iconClassName)} aria-hidden="true" />
+      <Icon class={classNames('size-6 flex-shrink-0', iconClassName)} aria-hidden="true" />
     {/if}
 
     <span
