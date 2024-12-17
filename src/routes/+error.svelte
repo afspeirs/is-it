@@ -1,7 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { Plus } from 'lucide-svelte';
-  import Button from '$lib/components/Button.svelte';
+  import AddDate from '$lib/components/AddDate.svelte';
 </script>
 
 <svelte:head>
@@ -13,11 +12,5 @@
 
   <p>Create a new one below:</p>
 
-  <!-- TODO: Make this functional -->
-  <Button
-    icon={Plus}
-    colour="primary"
-  >
-    Create a new date
-  </Button>
+  <AddDate />
 </div>

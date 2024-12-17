@@ -7,20 +7,12 @@
   let { data }: { data: PageData } = $props();
   // console.log(data);
 
-  const currentDate = dates.find((date) => (
+  const foundDate = $derived(dates.all.find((date) => (
     date.day === data.date.day &&
     date.month === data.date.month
-  ));
+  )));
 
-  const isDateStored = (
-    currentDate?.day === data.date.day &&
-    currentDate?.month === data.date.month &&
-    currentDate?.name === data.date.name &&
-    currentDate?.valueNo === data.date.valueNo &&
-    currentDate?.valueYes === data.date.valueYes
-  );
-
-  // $inspect({ isDateStored });
+  // $inspect({ foundDate });
 </script>
 
 <span class="text-9xl font-bold uppercase">
@@ -31,10 +23,11 @@
   {/if}
 </span>
 
-{#if !isDateStored}
+{#if !foundDate}
   <Button
     icon={SaveIcon}
-    className="absolute bottom-2 right-2"
+    iconOnly
+    className="absolute top-2 right-2"
     fullWidth={false}
     colour="primary"
   >
