@@ -26,7 +26,8 @@
 {#if !foundDate}
   <Button
     icon={SaveIcon}
-    className="absolute bottom-2 right-2"
+    iconOnly
+    className="absolute top-2 right-2"
     fullWidth={false}
     colour="primary"
   >

@@ -9,7 +9,7 @@
 <div class="flex flex-col h-dvh">
   <Header />
 
-  <main class="grid place-items-center flex-1">
+  <main class="relative grid place-items-center flex-1">
     <div>
       {@render children()}
     </div>
