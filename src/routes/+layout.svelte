@@ -1,7 +1,8 @@
 <script lang="ts">
-  import '../app.css';
   import Header from '$lib/components/Header.svelte';
   import Toaster from '$lib/components/Toaster.svelte';
+  import '../app.css';
+  import '../webmanifest-apple';
 
   let { children } = $props();
 </script>
